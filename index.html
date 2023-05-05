@@ -10,6 +10,30 @@
     </head>
 
     <body>
+        <div id="body-wrapper">
+            <figure id="logo">
+                <img src="images/nbaLogo.png">
+            </figure>
+            
+            <div id="title">
+                <h1>2022-2023 Player Search Engine</h1>
+            </div>
+
+            <div id="search-wrapper">
+                <div id="search-bar">
+                    <input type="search" id="search" data-search>
+                </div>
+
+                <div id="player-cards" data-player-cards></div>
+
+                <template data-player-temp>
+                    <div class="card">
+                        <div class="name" data-name></div>
+                    </div>
+                </template>
+            </div>
+        </div>
+
         <!-- JavaScript -->
         <script src="script.js"></script>
     </body>
