@@ -11,6 +11,10 @@ headers = {
 	"X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com"
 }
 
+
+# Use a set to keep track of the keys already added to the dictionary
+added_keys = set()
+
 allTeams = (requests.get(url, headers=headers)).json()["response"]
 
 count=0
@@ -30,11 +34,14 @@ for i in allTeams:
         playersInTeam = (requests.get(url, headers=headers, params=querystring)).json()["response"]
 
         for j in playersInTeam:
-            player={
-                "name":j["firstname"]+" "+j["lastname"],
-                "id":j["id"]
-            }
-            playerMap.append(player)
+             if j["id"] not in added_keys:
+                player = {
+                    "name": j["firstname"] + " " + j["lastname"],
+                    "id": j["id"]
+                }
+                playerMap.append(player)
+                added_keys.add(j["id"])  # Add the key to the set
+
 
 json_data=json.dumps(playerMap)
 
