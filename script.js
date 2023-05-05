@@ -1,28 +1,26 @@
 const playerCardTemp=document.querySelector("[data-player-temp]");
 const playerCards=document.querySelector("[data-player-cards]");
-const searchInput=document.querySelector("[data-search]");
+// const searchInput=document.querySelector("[data-search]");
 
 let players=[];
 
-searchInput.addEventListener("input",(event)=>{
-    const searchValue=event.target.value;
-    console.log(players);
-})
+// searchInput.addEventListener("input",(event)=>{
+//     const searchValue=event.target.value;
+//     console.log(players);
+// })
 
 function loadPlayers()
 {
     fetch('https://raw.githubusercontent.com/cse204-2023/10-final-project-hvnguyen4/main/data.json')
         .then(response => response.json())
         .then(data => {
-            const playerMap = new Map(Object.entries(data));
-            players=playerMap;
-            players=playerMap.forEach((value, key) => {
-                const card=playerCardTemp.content.cloneNode(true).children[0];
-                const name=card.querySelector("[data-name]");
-                name.textContent=key;
+            players=data.map(player => {
+                // const card=playerCardTemp.content.cloneNode(true).children[0];
+                // const name=card.querySelector("[data-name]")
 
-                playerCards.append(card);
-            });
+                // name.textContent=
+                console.log(player);
+            })
         })
         .catch(error => {
             console.error('Error:', error);

@@ -3,8 +3,7 @@ import json
 
 url = "https://api-nba-v1.p.rapidapi.com/teams"
 
-playerMap=[];
-player={}
+playerMap=[]
 
 headers = {
 	"content-type": "application/octet-stream",
@@ -31,9 +30,11 @@ for i in allTeams:
         playersInTeam = (requests.get(url, headers=headers, params=querystring)).json()["response"]
 
         for j in playersInTeam:
-            player[j["firstname"]+" "+j["lastname"]]=j["id"]
+            player={
+                "name":j["firstname"]+" "+j["lastname"],
+                "id":j["id"]
+            }
             playerMap.append(player)
-            player={}
 
 json_data=json.dumps(playerMap)
 
