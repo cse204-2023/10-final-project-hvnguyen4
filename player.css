@@ -1,0 +1,64 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Figtree, Arial, Helvetica, sans-serif;
+    font-weight:100;
+}
+
+
+
+
+
+body{
+    height:100vh;
+    background: linear-gradient(to bottom,black,#C80F2E);
+}
+
+
+
+
+
+#logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#logo img{
+    margin-top:30px;
+    margin-bottom:30px;
+    width:252px;
+}
+
+
+
+
+
+#player-details-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:84vh;
+}
+#player-details-container figure img{
+    border-radius: 25px;
+    margin:70px;
+}
+
+
+
+
+
+#player-details{
+    color:rgb(249,249,249);
+    margin:70px;
+}
+#player-details h1{
+    font-size:60px;
+    padding-bottom:20px;
+    text-decoration:underline;
+}
+#player-details h2{
+    font-size:30px;
+    padding-bottom:10px;
+}

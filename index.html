@@ -9,7 +9,8 @@
         <title>NBA Search Engine</title>
     </head>
 
-    <body>
+    <!-- Loads all the players from JSON file -->
+    <body onload="loadPlayers()">
         <div id="body-wrapper">
             <figure id="logo">
                 <img src="images/nbaLogo.png">
@@ -26,6 +27,7 @@
 
                 <div id="player-cards" data-player-cards></div>
 
+                <!-- Template used to show results from search bar...divs will be created inside player-cards -->
                 <template data-player-temp>
                     <div class="card">
                         <div class="name" data-name></div>

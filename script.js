@@ -4,8 +4,10 @@ const searchInput=document.querySelector("[data-search]");
 
 let players=[];
 
+// Determines which player divs should appear and not appear based on what is being typed in search bar
 searchInput.addEventListener("input",(event)=>{
     const searchValue=event.target.value.toLowerCase();
+
     if (searchValue) {
         // If the search value is not empty, show the cards that match the search value
         players.forEach(player => {
@@ -13,7 +15,8 @@ searchInput.addEventListener("input",(event)=>{
             player.element.classList.toggle("hide",!visible);
         })
         playerCards.classList.remove("hide");
-    } else {
+    }
+    else {
         // If the search value is empty, hide all the player cards
         players.forEach(player => {
             player.element.classList.add("hide");
@@ -22,6 +25,7 @@ searchInput.addEventListener("input",(event)=>{
     }
 })
 
+// Function that loads all the players from JSON File
 function loadPlayers()
 {
     fetch('https://raw.githubusercontent.com/cse204-2023/10-final-project-hvnguyen4/main/data.json')
@@ -34,6 +38,10 @@ function loadPlayers()
                 name.textContent=player.name;
                 playerCards.append(card);
 
+                card.addEventListener("click", () => {
+                    window.location.href = "player.html?id="+player.id;
+                });
+
                 return{name:player.name, element:card};
            })
            players.forEach(player => player.element.classList.add("hide"));
@@ -42,48 +50,3 @@ function loadPlayers()
             console.error('Error:', error);
         });
 }
-
-loadPlayers();
-
-function playerByID(ID)
-{
-    const data = null;
-
-    const xhr = new XMLHttpRequest();
-    xhr.withCredentials = false;
-
-    xhr.addEventListener('readystatechange', function () {
-        if (this.readyState === this.DONE) {
-            let something=(JSON.parse(this.responseText)).response;
-            console.log(something);
-        }
-    });
-
-    xhr.open('GET', 'https://api-nba-v1.p.rapidapi.com/players?id='+ID);
-    xhr.setRequestHeader('content-type', 'application/octet-stream');
-    xhr.setRequestHeader('X-RapidAPI-Key', 'f5513e7d85msh4a88fc5c9f1ed74p1c6ca4jsn3faaeefc49c9');
-    xhr.setRequestHeader('X-RapidAPI-Host', 'api-nba-v1.p.rapidapi.com');
-
-    xhr.send(data);
-}
-
-function getPlayerImage(name)
-{
-    const apiUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${name}&prop=pageimages&format=json&pithumbsize=500`;
-
-    fetch(`https://cors-anywhere.herokuapp.com/${apiUrl}`)
-    .then(response => response.json())
-    .then(data => {
-        // Extract the image URL from the API response
-        const pages = data.query.pages;
-        const pageId = Object.keys(pages)[0];
-        const imageUrl = pages[pageId].thumbnail.source;
-
-        // Use the image URL as needed (e.g., to display the image on a webpage)
-        console.log(imageUrl);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
-

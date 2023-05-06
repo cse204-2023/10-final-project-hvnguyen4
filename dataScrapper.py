@@ -1,3 +1,5 @@
+# This was used to get all the current 2022-23 active NBA players and their respective ids
+
 import requests
 import json
 
@@ -12,7 +14,6 @@ headers = {
 }
 
 
-# Use a set to keep track of the keys already added to the dictionary
 added_keys = set()
 
 allTeams = (requests.get(url, headers=headers)).json()["response"]
