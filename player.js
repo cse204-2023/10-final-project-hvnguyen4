@@ -3,7 +3,7 @@ const playerID=searchParams.get('id');
 let playerInfo;
 let playerUrl;
 
-// Function that retrieves information about NBA Player
+// Function that retrieves information about NBA Player (all information is from API-NBA)
 function playerByID()
 {
     const data = null;
@@ -38,7 +38,7 @@ function playerByID()
     xhr.send(data);
 }
 
-// Function that retrieves image of NBA Player
+// Function that retrieves image of NBA Player (all images are from wikipedia.org)
 function getPlayerImage(name)
 {
     const apiUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${name}&prop=pageimages&format=json&pithumbsize=500&origin=*`;
